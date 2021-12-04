@@ -1,0 +1,9 @@
+datasets==1.11.0
+numpy==1.21.4
+pandas==1.3.4
+torch==1.10.0
+tqdm==4.49.0
+transformers==4.12.5
+# you will also need torch_xla for TPU model
+# !curl https://raw.githubusercontent.com/pytorch/xla/master/contrib/scripts/env-setup.py -o pytorch-xla-env-setup.py
+# !python pytorch-xla-env-setup.py --version 1.7 --apt-packages libomp5 libopenblas-dev

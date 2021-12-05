@@ -271,6 +271,7 @@ class jaccardScore:
     def __init__(self, valid_df, tokenizer, pad_on_right, max_len, doc_stride):
 
         self.valid = valid_df
+        self.tokenizer = tokenizer
 
         self.valid_dataset = Dataset.from_pandas(self.valid)
 
@@ -288,7 +289,7 @@ class jaccardScore:
 
     def __call__(self, raw_predictions):
         final_predictions = postprocess_qa_predictions(
-            self.valid_dataset, self.validation_features, raw_predictions.predictions
+            self.valid_dataset, self.validation_features, raw_predictions.predictions, self.tokenizer
         )
         self.valid["prediction"] = self.valid["id"].apply(lambda r: final_predictions[r])
         self.valid["prediction"] = self.valid["prediction"].apply(lambda x: " ".join(x.split()))
